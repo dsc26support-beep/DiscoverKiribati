@@ -112,29 +112,41 @@ No secrets are needed. These public (non-secret) variables control launch behavi
 
 Contact details still live in `lib/config.ts`. Demo, sample and unpublished pages are marked `noindex` automatically. Security headers and caching rules are in `public/_headers`.
 
+## Content system
+
+All editorial content lives in `content/<collection>/<slug>.json` (businesses, destinations, experiences, articles, affiliate-partners).
+
+- **Validation.** `npm run validate` (also run by every `npm run build` and by CI) checks every file with Zod and enforces: unique ids/slugs; every `destination`, `relatedBusinessSlugs`, `suggestedExperienceSlugs` and `nearbyDestinationSlugs` must exist; published businesses need `lastReviewed` and cannot be "unverified"; an `affiliateUrl` needs a disclosure **and** a matching active, approved partner; images need alt text, credit and licence. A bad edit fails the build instead of reaching the site.
+- **Content manager.** `/admin/` is a Decap CMS form interface (`public/admin/`). Edits are saved as pull requests (editorial workflow), so nothing goes live until it is merged. One-time setup:
+  1. Create a GitHub OAuth App; set its callback URL to `https://<your-domain>/api/callback`.
+  2. In Cloudflare Pages → Settings → Variables and Secrets, add `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` (secret).
+  3. Give each editor write access to the repository.
+  The login functions are in `functions/api/`. `/admin/` is excluded from search engines (`robots.txt`, `noindex`) and uses its own relaxed CSP in `public/_headers` because it loads Decap from unpkg.
+- **Order.** Each record has an `order` number; lists and the homepage use it (lowest first).
+
 ## 11. How to add and edit businesses
 
-Edit `data/businesses.ts`. See `ADMIN_GUIDE.md` for a non-technical walkthrough. In short: copy an existing record's shape, fill in only real, business-supplied information, set `listingStatus: "published"` once reviewed, and set `verificationStatus` honestly.
+Use the content manager at `/admin/` (see `ADMIN_GUIDE.md` and the **Content system** section below), or add a file `content/businesses/<slug>.json` by hand. Fill in only real, business-supplied information, set `listingStatus` to `published` once reviewed, and set `verificationStatus` honestly. `npm run validate` checks your work.
 
 ## 12. How to add destinations and articles
 
-- Destinations: `data/destinations.ts`
-- Journal articles: `data/articles.ts`
-- Experiences: `data/experiences.ts`
+- Destinations: `content/destinations/*.json`
+- Journal articles: `content/articles/*.json`
+- Experiences: `content/experiences/*.json`
 
-Each file exports a typed array (see `lib/types.ts`) and a `getXBySlug` helper. Adding a record automatically creates its detail page and static route via `generateStaticParams` — no component code needs to change.
+One JSON file per record (shape: `lib/types.ts`, rules: `scripts/validate-content.ts`). The `data/*.ts` modules load them and expose `getXBySlug` helpers. Adding a file automatically creates its detail page via `generateStaticParams` — no component code needs to change.
 
 ## 13. How to manage Mwakete promotions
 
 - The homepage and `/mwakete` promotional component is `components/MwaketePromo.tsx`; its copy and link come from `lib/config.ts` (`siteConfig.mwaketeUrl`).
-- To feature a business as a Mwakete seller, set `mwaketeSeller: true` on its record in `data/businesses.ts` — it will automatically appear in the "Local businesses also selling on Mwakete" section of `/mwakete` and carry the "Also on Mwakete" label elsewhere.
+- To feature a business as a Mwakete seller, set `mwaketeSeller: true` on its record in `content/businesses/<slug>.json` — it will automatically appear in the "Local businesses also selling on Mwakete" section of `/mwakete` and carry the "Also on Mwakete" label elsewhere.
 
 ## 14. How to configure approved affiliate partners
 
-Edit `data/affiliate-partners.ts`. It starts **empty** — there are no live affiliate partnerships yet. When a real, approved partnership exists:
+Add a file to `content/affiliate-partners/`. It starts **empty** — there are no live affiliate partnerships yet. When a real, approved partnership exists:
 
 1. Add an entry with real partner details, `approvedProgramStatus: "approved"`, and `active: true`.
-2. Set `affiliateUrl` on the relevant business record(s) in `data/businesses.ts`, along with an honest `affiliateDisclosure` string.
+2. Set `affiliateUrl` on the relevant business record(s) in `content/businesses/`, along with an honest `affiliateDisclosure` string.
 3. Update `app/affiliate-disclosure/page.tsx` so it no longer says there are no active programs.
 
 Never invent tracking IDs, SubIDs, or commission rates.
@@ -161,12 +173,12 @@ Every image slot currently renders `components/PlaceholderImage.tsx` (a labelled
 |---|---|---|
 | `productionDomain` | `lib/config.ts` | Set the real domain once known |
 | `contact.email`, `submissionEmail` | `lib/config.ts` | Replace with real, monitored inboxes |
-| All business records | `data/businesses.ts` | `listingStatus: "demo"` — replace with real, consented listings |
-| All experiences | `data/experiences.ts` | `isSample: true` — replace with real, fact-checked content |
-| All journal articles | `data/articles.ts` | `publishedStatus: "sample"` — replace with real, fact-checked writing |
-| Affiliate partners | `data/affiliate-partners.ts` | Empty by design — add only real, approved partnerships |
+| All business records | `content/businesses/` | `listingStatus: "demo"` — replace with real, consented listings |
+| All experiences | `content/experiences/` | `isSample: true` — replace with real, fact-checked content |
+| All journal articles | `content/articles/` | `publishedStatus: "sample"` — replace with real, fact-checked writing |
+| Affiliate partners | `content/affiliate-partners/` | Empty by design — add only real, approved partnerships |
 | All photography | throughout | Placeholder gradients everywhere — no licensed images were available to this build |
-| Destination facts flagged `needsVerification` | `data/destinations.ts` | Transport schedules, accommodation availability, etc. — verify before publishing |
+| Destination facts flagged `needsVerification` | `content/destinations/` | Transport schedules, accommodation availability, etc. — verify before publishing |
 | Newsletter signup | Homepage | Intentionally omitted — spec requires a real, consented collection mechanism before this can be added |
 
 This is not a security, legal, or compliance review — see `app/privacy/page.tsx`, which says so explicitly.

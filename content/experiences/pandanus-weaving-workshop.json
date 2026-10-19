@@ -1,0 +1,16 @@
+{
+  "id": "e3",
+  "slug": "pandanus-weaving-workshop",
+  "order": 3,
+  "title": "Learn pandanus-leaf weaving with a local collective",
+  "introduction": "A sample cultural-experience entry representing a hands-on weaving session with a community group.",
+  "description": "Sample content illustrating how a community cultural experience could be presented — introduction, practical notes, and a link to the hosting business. Replace with a real, consented listing before publication.",
+  "relatedBusinessSlugs": [
+    "manra-weaving-collective"
+  ],
+  "safetyNotes": null,
+  "bookingUrl": null,
+  "image": null,
+  "isSample": true,
+  "destination": "north-tarawa"
+}

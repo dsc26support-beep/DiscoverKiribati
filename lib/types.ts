@@ -15,17 +15,29 @@ export type VerificationStatus =
 
 export type ListingStatus = "demo" | "draft" | "published";
 
+/** A photograph. Every image must carry alt text, credit and licence. */
+export interface ImageRef {
+  src: string;
+  alt: string;
+  credit: string;
+  licence: string;
+}
+
 export interface Business {
   id: string;
   slug: string;
+  order: number;
   name: string;
   category: BusinessCategory;
+  /** Slug of the destination this business is in (content/destinations). */
+  destination: string;
+  /** Display name of that destination, filled in by the content loader. */
   island: string;
   location: string | null;
   shortDescription: string;
   description: string;
-  image: string | null;
-  gallery: string[];
+  image: ImageRef | null;
+  gallery: ImageRef[];
   website: string | null;
   email: string | null;
   phone: string | null;
@@ -43,6 +55,7 @@ export interface Business {
 export interface Destination {
   id: string;
   slug: string;
+  order: number;
   name: string;
   region: "Gilbert Islands" | "Phoenix Islands" | "Line Islands";
   introduction: string;
@@ -51,20 +64,22 @@ export interface Destination {
   suggestedExperienceSlugs: string[];
   nearbyDestinationSlugs: string[];
   needsVerification: string[];
-  image: string | null;
+  image: ImageRef | null;
 }
 
 export interface Experience {
   id: string;
   slug: string;
+  order: number;
   title: string;
   introduction: string;
   description: string;
+  destination: string;
   island: string;
   relatedBusinessSlugs: string[];
   safetyNotes: string | null;
   bookingUrl: string | null;
-  image: string | null;
+  image: ImageRef | null;
   isSample: boolean;
 }
 
@@ -80,16 +95,18 @@ export type ArticleCategory =
 export interface Article {
   id: string;
   slug: string;
+  order: number;
   title: string;
   category: ArticleCategory;
   summary: string;
   body: string[];
   publishedStatus: "sample" | "unpublished" | "published";
-  image: string | null;
+  image: ImageRef | null;
 }
 
 export interface AffiliatePartner {
   id: string;
+  order: number;
   partnerName: string;
   partnerWebsite: string;
   approvedProgramStatus: "not-yet-approved" | "approved" | "inactive";

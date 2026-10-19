@@ -1,0 +1,14 @@
+{
+  "id": "a3",
+  "slug": "south-tarawa-neighbourhood-guide",
+  "order": 3,
+  "title": "A neighbourhood guide to South Tarawa",
+  "category": "destination-guides",
+  "summary": "A sample destination-guide article outlining South Tarawa's main areas at a high level.",
+  "body": [
+    "This sample article is a placeholder for a proper neighbourhood-by-neighbourhood guide to South Tarawa, from Betio to Bonriki.",
+    "A complete version would describe each area's character and practical role (for example, Betio as a port town, Bairiki as a government and commercial centre) based on verified, current information."
+  ],
+  "publishedStatus": "sample",
+  "image": null
+}

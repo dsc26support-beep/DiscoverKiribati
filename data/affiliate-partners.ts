@@ -1,11 +1,11 @@
 import type { AffiliatePartner } from "@/lib/types";
+import { readCollection } from "@/lib/content";
 
 /**
- * Affiliate partner registry. Every entry is currently inactive —
- * Discover Kiribati has no live affiliate partnerships yet. Do NOT invent
- * affiliate IDs, tracking parameters, or commission rates. When a real
- * partnership is approved, add an entry here with active: true and a real
- * affiliateUrl; the site reads from this file wherever it needs to decide
- * whether to show a "Check availability" link or a plain informational one.
+ * Affiliate partner registry (content/affiliate-partners/*.json). Empty
+ * today — there are no live affiliate partnerships. Do NOT invent affiliate
+ * IDs, tracking parameters or commission rates. The content validator
+ * refuses any business `affiliateUrl` that is not backed by an active,
+ * approved partner here.
  */
-export const affiliatePartners: AffiliatePartner[] = [];
+export const affiliatePartners = readCollection<AffiliatePartner>("affiliate-partners");

@@ -1,70 +1,71 @@
 # Admin Guide (for the site owner — no coding experience required)
 
-This guide explains how to maintain Discover Kiribati day-to-day. It assumes you (or whoever helps you) can open files in a text editor and ask a developer to run `npm run build` and redeploy when you're done — you don't need to understand code to follow the steps below, but someone will need to do the "save and redeploy" step for you unless you're comfortable with that yourself.
+All content is edited in the **Content Manager** at `https://<your-domain>/admin/`. You sign in with GitHub, fill in simple forms, and press **Save** then **Publish**. Nothing goes live until your change is reviewed and merged — and the website refuses to build if a record is incomplete or contradicts another (for example, a business pointing at an island that does not exist).
 
-## Where everything lives
+> First-time setup of the Content Manager (GitHub login) is a one-off job for a developer — see "Content system" in `README.md`.
 
-| What | File |
+## What you can edit
+
+| Collection | What it is |
 |---|---|
-| Business listings | `data/businesses.ts` |
-| Destinations (islands) | `data/destinations.ts` |
-| Experiences | `data/experiences.ts` |
-| Journal articles | `data/articles.ts` |
-| Affiliate partners | `data/affiliate-partners.ts` |
-| Contact details, domain, Mwakete link | `lib/config.ts` |
+| Businesses | Directory listings |
+| Destinations | Island guides |
+| Experiences | Things to do |
+| Journal articles | Blog posts |
+
+Advanced users can also edit the files directly in `content/<collection>/<slug>.json` on GitHub. Contact details, the domain and the Mwakete link live in `lib/config.ts`.
 
 ## Adding a business
 
-1. Open `data/businesses.ts`.
-2. Copy one of the existing entries (everything between one `{` and the matching `}`).
-3. Paste it in, and change each value:
-   - `id`: a short unique code, e.g. `"b9"`
-   - `slug`: a web-address-friendly version of the name, e.g. `"my-guesthouse"` (lowercase, hyphens, no spaces)
-   - `name`, `category`, `island`, `location`, `shortDescription`, `description`: fill in only what the business actually told you
-   - `listingStatus`: use `"draft"` while you're still reviewing it, or `"published"` once it's ready to go live (it will **not** appear as a demonstration listing once published)
-   - `verificationStatus`: be honest —
-     - `"information-supplied-by-business"` if the business gave you the details
-     - `"details-pending-confirmation"` if something is still unconfirmed
-     - `"unverified"` if you haven't checked anything yet
-4. Save the file, and have it rebuilt and redeployed.
+1. Open **Businesses → New Business**.
+2. Fill in the form. Only enter what the business actually told you:
+   - **ID**: a short unique code, e.g. `b9`. **Web address name**: lowercase with hyphens, e.g. `my-guesthouse`. **Display order**: a number (lowest shows first).
+   - **Island / destination**: pick from the list.
+   - **Listing status**: `Draft` while you review, `Published` when ready. (`Demo` is for sample data only.)
+   - **Verification status** — be honest:
+     - *Information supplied by business* — they gave you the details.
+     - *Details pending confirmation* — something is still unconfirmed.
+     - *Unverified* — you have not checked anything. Unverified listings **cannot** be published.
+   - **Last reviewed**: today's date as `YYYY-MM-DD` — required for Published listings.
+3. **Never invent** a phone number, email, website or price. Leave the box empty if you do not have it.
+4. Press **Save**, then set the status to **Ready**, then **Publish**. This creates a change for review; once merged, the site rebuilds.
 
-**Never invent** a phone number, email, website, or price for a business. Leave a field `null` if you don't have real information for it.
+If the form is incomplete the build will fail with a plain message such as `businesses/my-guesthouse: published listings need lastReviewed` — fix that field and save again.
 
 ## Correcting inaccurate information
 
-Find the business, destination, experience, or article in its data file and edit the relevant field directly. There's no separate "edit mode" — the data file **is** the content.
+Open the record in the Content Manager, change the field, and publish. There is no separate "edit mode".
 
-## Replacing images
+## Photos
 
-Every page currently shows a plain coloured placeholder instead of a photo, because no licensed photography was available when this site was built. To add a real photo, you'll need a developer to:
+In a record, open **Photo** and upload the file. You must also fill in:
+- **Alt text** — a short description for people using screen readers,
+- **Photographer / source**, and
+- **Licence or permission** — e.g. "Owned by business, permission granted".
 
-1. Save your image file into the `public/images/` folder.
-2. Swap the placeholder for that image on the specific page.
-
-This is deliberately done one photo at a time, so nothing gets published without someone actually choosing and checking it.
+A photo missing any of these will not build. (Photos are not shown on pages yet — a developer still needs to swap each `PlaceholderImage` for the real image.)
 
 ## Reviewing business submissions
 
-The "List your business" form doesn't send submissions straight into the website. Instead, it opens the visitor's own email program with a ready-made message addressed to your configured submission email (see `lib/config.ts` → `submissionEmail`). When you receive one of these emails:
+The "List your business" form currently opens the visitor's email program with a ready-made message to your submission email (`lib/config.ts` → `submissionEmail`). When one arrives:
+1. Check the details are genuine and the business wants to be listed.
+2. Add it as a **Draft** in the Content Manager, then publish once reviewed.
+3. Reply to let them know (or ask for more information).
 
-1. Check the details are genuine and the business actually wants to be listed.
-2. Add it to `data/businesses.ts` following "Adding a business" above.
-3. Reply to the business to let them know it's live (or ask for more information first).
+## Paid placements and Mwakete
 
-## Labelling paid placements
+- Tick **Paid / sponsored placement** to show the "Sponsored placement" label.
+- Tick **Also sells on Mwakete** to show the "Also on Mwakete" label and list it on the Mwakete page.
 
-To mark a listing as sponsored/paid, set `sponsored: true` on its entry in `data/businesses.ts`. It will automatically show a "Sponsored placement" label on its card and detail page. To mark a business as also selling on Mwakete, set `mwaketeSeller: true` the same way.
+## Affiliate links
 
-## Updating affiliate links
+There are no affiliate partnerships yet, on purpose. When you have a real, approved one:
+1. Add the partner under `content/affiliate-partners/` (ask a developer) with its real details, `approved` status and `active` switched on.
+2. On the business, set the **Affiliate link** to exactly the partner's link and write an honest **Affiliate disclosure**. The site will refuse to build if no active, approved partner matches.
+3. Update the wording on the Affiliate Disclosure page.
 
-Affiliate partnerships start **empty** on purpose — there are none yet. When you have a real, approved affiliate partnership:
+**Never** make up a referral code, tracking ID or commission rate.
 
-1. Open `data/affiliate-partners.ts` and add an entry with the partner's real name, website, and your actual affiliate URL.
-2. On the relevant business's entry in `data/businesses.ts`, set `affiliateUrl` to that link and `affiliateDisclosure` to a short, honest sentence about the commercial relationship.
-3. Update the wording on the "Affiliate Disclosure" page (`app/affiliate-disclosure/page.tsx`) so it reflects that a real partnership now exists.
+## Before launch
 
-**Never** make up a referral code, tracking ID, or commission percentage.
-
-## Full list of placeholders to replace before launch
-
-See the "Known limitations / placeholders" table in `README.md` — it lists every placeholder in the project (domain, contact emails, demo listings, sample articles, and so on) with where to find and fix each one.
+See "Known limitations / placeholders" in `README.md` and run `npm run check-launch` — it lists everything still to replace (domain, emails, demo and sample content).

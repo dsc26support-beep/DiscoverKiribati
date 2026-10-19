@@ -1,0 +1,16 @@
+{
+  "id": "e1",
+  "slug": "lagoon-canoe-paddle",
+  "order": 1,
+  "title": "Paddle the South Tarawa lagoon at sunset",
+  "introduction": "A sample experience entry describing a guided outrigger canoe paddle along the calm lagoon side of South Tarawa.",
+  "description": "This is sample editorial content showing how an experience entry looks, pairing a short introduction with practical and safety notes. It should be replaced with a verified, real experience description — ideally written with input from a local guide or operator — before publication.",
+  "relatedBusinessSlugs": [
+    "ocean-rhythm-outrigger-tours"
+  ],
+  "safetyNotes": "Sample note: always confirm a life jacket is provided, check weather and lagoon conditions with your guide, and avoid paddling alone after dark.",
+  "bookingUrl": null,
+  "image": null,
+  "isSample": true,
+  "destination": "south-tarawa"
+}

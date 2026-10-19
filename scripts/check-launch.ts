@@ -6,9 +6,11 @@
  *   node --experimental-strip-types scripts/check-launch.ts
  */
 import { siteConfig } from "../lib/config.ts";
-import { businesses } from "../data/businesses.ts";
-import { experiences } from "../data/experiences.ts";
-import { articles } from "../data/articles.ts";
+import { readCollection } from "../lib/content.ts";
+
+const businesses = readCollection<{ order: number; id: string; slug: string; listingStatus: string }>("businesses");
+const experiences = readCollection<{ order: number; id: string; slug: string; isSample: boolean }>("experiences");
+const articles = readCollection<{ order: number; id: string; slug: string; publishedStatus: string }>("articles");
 
 if (process.env.LAUNCH_CHECK !== "1") {
   console.log("check-launch: skipped (set LAUNCH_CHECK=1 to enforce).");

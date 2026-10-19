@@ -1,0 +1,20 @@
+{
+  "id": "d2",
+  "slug": "north-tarawa",
+  "order": 2,
+  "name": "North Tarawa",
+  "region": "Gilbert Islands",
+  "introduction": "North Tarawa is the quieter, less developed half of Tarawa atoll — a string of villages connected mostly by reef flats and causeways rather than paved roads, offering a slower pace than the capital area to its south.",
+  "geography": "Separated from South Tarawa by a natural channel, North Tarawa retains a more traditional, village-based way of life, with coconut groves, mangroves, and small settlements along the lagoon shore.",
+  "practicalNotes": "Travel between South and North Tarawa is typically by boat across the channel, or on foot across the reef flat at low tide with a local guide. Plan around tides and confirm transport locally.",
+  "suggestedExperienceSlugs": [],
+  "nearbyDestinationSlugs": [
+    "south-tarawa",
+    "abaiang"
+  ],
+  "needsVerification": [
+    "Current boat transfer options and typical crossing times.",
+    "Accommodation availability, if any, on North Tarawa itself."
+  ],
+  "image": null
+}

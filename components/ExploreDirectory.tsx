@@ -2,15 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { businesses } from "@/data/businesses";
 import { categoryLabels } from "@/lib/labels";
-import type { BusinessCategory } from "@/lib/types";
+import type { Business, BusinessCategory } from "@/lib/types";
 import BusinessCard from "@/components/BusinessCard";
 import EmptyState from "@/components/EmptyState";
 
 const categories = Object.keys(categoryLabels) as BusinessCategory[];
 
-export default function ExploreDirectory() {
+export default function ExploreDirectory({ businesses }: { businesses: Business[] }) {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") ?? "");
   const [category, setCategory] = useState<BusinessCategory | "all">(
@@ -20,7 +19,7 @@ export default function ExploreDirectory() {
 
   const islands = useMemo(
     () => Array.from(new Set(businesses.map((b) => b.island))).sort(),
-    []
+    [businesses]
   );
 
   const results = useMemo(() => {
@@ -36,7 +35,7 @@ export default function ExploreDirectory() {
       const matchesIsland = island === "all" || b.island === island;
       return matchesQuery && matchesCategory && matchesIsland;
     });
-  }, [query, category, island]);
+  }, [businesses, query, category, island]);
 
   const hasActiveFilters = query.length > 0 || category !== "all" || island !== "all";
 

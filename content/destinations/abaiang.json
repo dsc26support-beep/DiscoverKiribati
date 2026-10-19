@@ -1,0 +1,21 @@
+{
+  "id": "d3",
+  "slug": "abaiang",
+  "order": 3,
+  "name": "Abaiang",
+  "region": "Gilbert Islands",
+  "introduction": "Abaiang is a large lagoon atoll just north of Tarawa, known for its broad lagoon, traditional villages, and relative closeness to the capital compared with Kiribati's more remote outer islands.",
+  "geography": "A classic Gilbert Islands atoll, Abaiang encloses a wide lagoon with numerous islets, making it a popular subject for boat trips and lagoon exploration from Tarawa.",
+  "practicalNotes": "Reaching Abaiang usually involves a short domestic flight or an inter-island boat from Tarawa. Facilities are more limited than on South Tarawa, so travellers should plan supplies and accommodation in advance with a local contact.",
+  "suggestedExperienceSlugs": [],
+  "nearbyDestinationSlugs": [
+    "south-tarawa",
+    "north-tarawa",
+    "butaritari"
+  ],
+  "needsVerification": [
+    "Current flight frequency and typical fares to Abaiang.",
+    "Accommodation options currently operating on the island."
+  ],
+  "image": null
+}

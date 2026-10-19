@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ExploreDirectory from "@/components/ExploreDirectory";
+import { businesses } from "@/data/businesses";
 
 export const metadata: Metadata = {
   title: "Explore the directory",
@@ -24,7 +25,7 @@ export default function ExplorePage() {
 
         <div className="mt-8">
           <Suspense fallback={<p className="text-sm text-grey">Loading directory…</p>}>
-            <ExploreDirectory />
+            <ExploreDirectory businesses={businesses} />
           </Suspense>
         </div>
       </div>

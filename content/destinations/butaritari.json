@@ -1,0 +1,19 @@
+{
+  "id": "d4",
+  "slug": "butaritari",
+  "order": 4,
+  "name": "Butaritari",
+  "region": "Gilbert Islands",
+  "introduction": "Butaritari, in Kiribati's northern Gilbert Islands, is often described as one of the greenest and most fertile atolls in the country, with lush vegetation and a lagoon well known among sport-fishing visitors.",
+  "geography": "Unlike many thinner atolls, Butaritari has notably wide, fertile land areas, supporting dense coconut and breadfruit groves alongside its lagoon and reef systems.",
+  "practicalNotes": "Butaritari is a remote outer island; travel typically requires a domestic flight from Tarawa, and facilities for independent travellers are limited. Specialist sport-fishing operators sometimes arrange trips here — confirm directly with any operator before booking.",
+  "suggestedExperienceSlugs": [],
+  "nearbyDestinationSlugs": [
+    "abaiang"
+  ],
+  "needsVerification": [
+    "Current flight schedule and any lodging available to independent travellers.",
+    "Which, if any, licensed tour or fishing operators currently run trips to Butaritari."
+  ],
+  "image": null
+}
