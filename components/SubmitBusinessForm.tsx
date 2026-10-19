@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { siteConfig } from "@/lib/config";
+import { siteConfig, showDevNotices } from "@/lib/config";
 import { categoryLabels } from "@/lib/labels";
 import type { BusinessCategory } from "@/lib/types";
 
@@ -79,7 +80,7 @@ export default function SubmitBusinessForm() {
 
   return (
     <div>
-      {siteConfig.submissionEmailIsPlaceholder && (
+      {showDevNotices && siteConfig.submissionEmailIsPlaceholder && (
         <div className="mb-6 rounded-xl border border-coral/30 bg-coral/5 p-4 text-sm text-charcoal/85">
           <p className="font-semibold text-coral">Setup note (development placeholder)</p>
           <p className="mt-1">
@@ -238,13 +239,13 @@ export default function SubmitBusinessForm() {
             className="mt-1"
           />
           I agree to the{" "}
-          <a href="/listing-policy" className="font-medium text-lagoon no-underline hover:text-ocean">
+          <Link href="/listing-policy" className="font-medium text-lagoon no-underline hover:text-ocean">
             Listing Policy
-          </a>{" "}
+          </Link>{" "}
           and{" "}
-          <a href="/privacy" className="font-medium text-lagoon no-underline hover:text-ocean">
+          <Link href="/privacy" className="font-medium text-lagoon no-underline hover:text-ocean">
             Privacy Policy
-          </a>
+          </Link>
           .
         </label>
 

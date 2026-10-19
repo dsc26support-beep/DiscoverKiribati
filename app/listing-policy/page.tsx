@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 
@@ -52,9 +53,9 @@ export default function ListingPolicyPage() {
         <p className="mt-2">
           A business owner can request a correction or removal of their
           listing at any time via the{" "}
-          <a href="/contact" className="font-medium text-lagoon no-underline hover:text-ocean">
+          <Link href="/contact" className="font-medium text-lagoon no-underline hover:text-ocean">
             Contact page
-          </a>
+          </Link>
           .
         </p>
       </section>

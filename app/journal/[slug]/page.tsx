@@ -5,6 +5,7 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import DisclosureLabel from "@/components/DisclosureLabel";
 import { articles, getArticleBySlug } from "@/data/articles";
 import { articleCategoryLabels } from "@/lib/labels";
+import { noIndexUnless } from "@/lib/seo";
 
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
@@ -18,7 +19,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
-  return { title: article.title, description: article.summary };
+  return {
+    title: article.title,
+    description: article.summary,
+    ...noIndexUnless(article.publishedStatus === "published"),
+  };
 }
 
 export default async function ArticleDetailPage({

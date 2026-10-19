@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SafeExternalLink from "@/components/SafeExternalLink";
+import { showDevNotices } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Travel Guide",
@@ -72,7 +73,7 @@ export default function TravelGuidePage() {
             <section key={section.heading}>
               <h2 className="font-display text-xl text-ocean">{section.heading}</h2>
               <p className="mt-2 text-charcoal/85">{section.body}</p>
-              {section.verify && (
+              {showDevNotices && section.verify && (
                 <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-coral">
                   Verify against a current, official source before publishing
                 </p>

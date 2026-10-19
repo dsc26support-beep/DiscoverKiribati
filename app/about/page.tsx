@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import SafeExternalLink from "@/components/SafeExternalLink";
@@ -72,9 +73,9 @@ export default function AboutPage() {
             Any genuine business operating in Kiribati&apos;s tourism sector
             can submit a listing. Submission does not guarantee publication,
             verification, ranking, or commercial results — see our{" "}
-            <a href="/listing-policy" className="font-medium text-lagoon no-underline hover:text-ocean">
+            <Link href="/listing-policy" className="font-medium text-lagoon no-underline hover:text-ocean">
               Listing Policy
-            </a>{" "}
+            </Link>{" "}
             for details.
           </p>
         </section>
@@ -85,9 +86,9 @@ export default function AboutPage() {
             We distinguish clearly between organic editorial content, paid or
             sponsored placements, Mwakete promotion, and affiliate links. See
             our{" "}
-            <a href="/affiliate-disclosure" className="font-medium text-lagoon no-underline hover:text-ocean">
+            <Link href="/affiliate-disclosure" className="font-medium text-lagoon no-underline hover:text-ocean">
               Affiliate Disclosure
-            </a>{" "}
+            </Link>{" "}
             for how commercial relationships are handled.
           </p>
         </section>

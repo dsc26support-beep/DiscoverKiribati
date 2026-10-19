@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { siteConfig } from "@/lib/config";
@@ -35,9 +36,9 @@ export default function TermsPage() {
           This website does not currently accept reservations or payments.
           Any claim to the contrary on any page is an error — please report
           it via the{" "}
-          <a href="/contact" className="font-medium text-lagoon no-underline hover:text-ocean">
+          <Link href="/contact" className="font-medium text-lagoon no-underline hover:text-ocean">
             Contact page
-          </a>
+          </Link>
           .
         </p>
       </section>

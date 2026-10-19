@@ -7,6 +7,7 @@ import SafeExternalLink from "@/components/SafeExternalLink";
 import { businesses, getBusinessBySlug } from "@/data/businesses";
 import { categoryLabels, verificationLabels } from "@/lib/labels";
 import { safeExternalUrl } from "@/lib/url";
+import { noIndexUnless } from "@/lib/seo";
 
 export function generateStaticParams() {
   return businesses.map((b) => ({ slug: b.slug }));
@@ -23,6 +24,7 @@ export async function generateMetadata({
   return {
     title: business.name,
     description: business.shortDescription,
+    ...noIndexUnless(business.listingStatus === "published"),
   };
 }
 

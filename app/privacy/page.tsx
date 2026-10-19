@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 import LegalPage from "@/components/LegalPage";
 import { siteConfig } from "@/lib/config";
@@ -42,9 +43,9 @@ export default function PrivacyPage() {
         <h2 className="font-display text-xl text-ocean">Affiliate and commercial links</h2>
         <p className="mt-2">
           Some pages may contain affiliate or sponsored links; see our{" "}
-          <a href="/affiliate-disclosure" className="font-medium text-lagoon no-underline hover:text-ocean">
+          <Link href="/affiliate-disclosure" className="font-medium text-lagoon no-underline hover:text-ocean">
             Affiliate Disclosure
-          </a>{" "}
+          </Link>{" "}
           for details. Clicking an external link takes you to that
           provider&apos;s own website, which has its own, separate privacy
           practices.
@@ -65,9 +66,9 @@ export default function PrivacyPage() {
         <h2 className="font-display text-xl text-ocean">Contact</h2>
         <p className="mt-2">
           Questions about this policy can be sent through the{" "}
-          <a href="/contact" className="font-medium text-lagoon no-underline hover:text-ocean">
+          <Link href="/contact" className="font-medium text-lagoon no-underline hover:text-ocean">
             Contact page
-          </a>
+          </Link>
           .
         </p>
       </section>

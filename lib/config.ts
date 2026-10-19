@@ -13,10 +13,12 @@ export const siteConfig = {
   tagline: "An independent guide to the islands, people and businesses of Kiribati",
   operatedBy: "MainKT Enterprise",
 
-  // PLACEHOLDER — the real production domain is not yet known. Update this
-  // before deploying, and update it again if the domain changes. Used for
+  // PLACEHOLDER — the real production domain is not yet known. Set the
+  // NEXT_PUBLIC_SITE_URL environment variable in the Cloudflare Pages
+  // production environment (preferred), or edit the fallback below. Used for
   // canonical URLs, Open Graph tags, and the sitemap.
-  productionDomain: "https://discoverkiribati.example",
+  productionDomain:
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://discoverkiribati.example",
 
   mwaketeUrl: "https://mwakete.com/",
 
@@ -47,6 +49,14 @@ export const siteConfig = {
     lastReviewed: "2026-10-19",
   },
 } as const;
+
+/**
+ * Development-only notices ("photography needed", "verify before
+ * publishing", setup banners) are hidden when NEXT_PUBLIC_LAUNCH_MODE is
+ * "production". `scripts/check-launch.ts` fails the build if placeholders
+ * remain while LAUNCH_CHECK=1.
+ */
+export const showDevNotices = process.env.NEXT_PUBLIC_LAUNCH_MODE !== "production";
 
 export function absoluteUrl(path: string): string {
   const base = siteConfig.productionDomain.replace(/\/$/, "");

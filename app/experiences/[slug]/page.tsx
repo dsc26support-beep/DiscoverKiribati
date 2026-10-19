@@ -7,6 +7,7 @@ import BusinessCard from "@/components/BusinessCard";
 import SafeExternalLink from "@/components/SafeExternalLink";
 import { experiences, getExperienceBySlug } from "@/data/experiences";
 import { businesses } from "@/data/businesses";
+import { noIndexUnless } from "@/lib/seo";
 
 export function generateStaticParams() {
   return experiences.map((e) => ({ slug: e.slug }));
@@ -20,7 +21,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const experience = getExperienceBySlug(slug);
   if (!experience) return {};
-  return { title: experience.title, description: experience.introduction };
+  return {
+    title: experience.title,
+    description: experience.introduction,
+    ...noIndexUnless(!experience.isSample),
+  };
 }
 
 export default async function ExperienceDetailPage({

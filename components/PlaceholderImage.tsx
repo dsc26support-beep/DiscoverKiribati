@@ -5,6 +5,8 @@
  * "Photography and imagery" (missing images must not create broken
  * layouts).
  */
+import { showDevNotices } from "@/lib/config";
+
 export default function PlaceholderImage({
   label,
   className = "",
@@ -12,13 +14,15 @@ export default function PlaceholderImage({
   label: string;
   className?: string;
 }) {
+  // Hide the internal "photography needed" note from public visitors.
+  const text = showDevNotices ? label : label.replace(/ — photography needed$/, "");
   return (
     <div
       role="img"
-      aria-label={`Image placeholder: ${label}`}
+      aria-label={`Image placeholder: ${text}`}
       className={`flex items-center justify-center bg-gradient-to-br from-ocean to-lagoon text-center text-warm-white/70 ${className}`}
     >
-      <span className="label-caps px-4">{label}</span>
+      <span className="label-caps px-4">{text}</span>
     </div>
   );
 }

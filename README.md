@@ -101,7 +101,16 @@ git push -u origin main
 
 ## 10. Environment configuration
 
-The site currently needs **no environment variables or secrets** — see `.env.example`. All editable configuration (domain, contact details, Mwakete URL) lives in `lib/config.ts` instead.
+No secrets are needed. These public (non-secret) variables control launch behaviour — set them in the Cloudflare Pages **production** environment:
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Real production domain (canonicals, Open Graph, sitemap). Falls back to a `.example` placeholder. |
+| `NEXT_PUBLIC_LAUNCH_MODE=production` | Hides development-only notices ("photography needed", setup banners, "verify before publishing"). |
+| `LAUNCH_CHECK=1` | Makes `npm run build` **fail** if any placeholder remains (domain, emails, demo/sample content). Run `npm run check-launch` to test locally. |
+| `NODE_VERSION=22` | Pages build image Node version (matches `.nvmrc`). |
+
+Contact details still live in `lib/config.ts`. Demo, sample and unpublished pages are marked `noindex` automatically. Security headers and caching rules are in `public/_headers`.
 
 ## 11. How to add and edit businesses
 
