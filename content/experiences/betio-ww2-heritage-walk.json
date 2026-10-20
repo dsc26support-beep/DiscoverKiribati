@@ -1,0 +1,14 @@
+{
+  "id": "e2",
+  "slug": "betio-ww2-heritage-walk",
+  "order": 2,
+  "title": "A walking tour of Betio's WWII heritage sites",
+  "introduction": "A sample experience entry for a self-guided or guided walk past Betio's Second World War coastal defences and memorials.",
+  "description": "Betio was the site of significant fighting during the Second World War, and remnants of coastal gun emplacements and memorials remain visible today. This entry is sample content and should be replaced with verified historical detail and current site information, ideally sourced with a local historian or the relevant heritage authority.",
+  "relatedBusinessSlugs": [],
+  "safetyNotes": "Sample note: some structures are old and unstable — stay on marked paths and do not climb on fortifications.",
+  "bookingUrl": null,
+  "image": null,
+  "isSample": true,
+  "destination": "south-tarawa"
+}

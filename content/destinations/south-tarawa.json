@@ -1,0 +1,23 @@
+{
+  "id": "d1",
+  "slug": "south-tarawa",
+  "order": 1,
+  "name": "South Tarawa",
+  "region": "Gilbert Islands",
+  "introduction": "South Tarawa is Kiribati's capital area and the country's main hub — a narrow, densely settled chain of islets connected by causeways, home to government offices, the international airport, and most of the country's shops, guesthouses and services.",
+  "geography": "A thin arc of reef islets enclosing a lagoon, South Tarawa stretches from Betio in the west to Tanaea in the east. Its narrowness means the ocean side and lagoon side are often only a short walk apart.",
+  "practicalNotes": "Most visitors arrive and begin their trip here, since Bonriki International Airport is on South Tarawa. Getting to other islands typically means a connecting flight or boat — confirm current options with an airline, shipping operator, or the Kiribati Tourism Authority before booking.",
+  "suggestedExperienceSlugs": [
+    "lagoon-canoe-paddle",
+    "betio-ww2-heritage-walk"
+  ],
+  "nearbyDestinationSlugs": [
+    "north-tarawa",
+    "abaiang"
+  ],
+  "needsVerification": [
+    "Current domestic flight and ferry schedules to other islands.",
+    "Any entry or movement restrictions that may apply to visitors."
+  ],
+  "image": null
+}
